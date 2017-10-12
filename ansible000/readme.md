@@ -34,3 +34,6 @@ Realiza una prueba de conexión a las maquinas que se crearon recientemente, por
     ssh root@server01 -p 2221 -i ../key.private
     ssh root@server02 -p 2222 -i ../key.private
     
+ ## Luego de seguir todos los pasos
+ Puedes salir de la carpeta Ansible000 
+    
