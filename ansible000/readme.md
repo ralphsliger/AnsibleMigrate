@@ -14,6 +14,14 @@ Ahora debes crear un conjunto de maquinas para pruebas, se crearán automáticam
 
     0.0.0.0:3306->3306/tcp, 0.0.0.0:2222->22/tcp   server02
     0.0.0.0:2221->22/tcp, 0.0.0.0:8000->80/tcp     server01
+    
+   Nombre del contenedor server01 = server01
+
+        $ (sudo) docker run -d -P --name server01 -p 2221:22 -p 80:80 16.04
+
+Nombre del contenedor server02 = server02
+
+        $ (sudo) docker run -d -P --name server02 -p 2222:22 -p 3306:3306 16.04
 
 Si lo deseas puedes modificar el archivo `create_dockers.sh` ajustando los parametros que consideres necesarios para lanzar los dockers que se ajusten al experimento que diseñes.
 
@@ -34,6 +42,14 @@ Realiza una prueba de conexión a las maquinas que se crearon recientemente, por
     ssh root@server01 -p 2221 -i ../key.private
     ssh root@server02 -p 2222 -i ../key.private
     
+## Cambiar permisos a las llaves, para poder adicionarlas:
+    chmod 0600 ../key.private
+
+ssh -o StrictHostKeyChecking=no root@server01 -p 2221 -i ../key.private hostname ssh -o StrictHostKeyChecking=no root@server02 -p 2222 -i ../key.private hostname
+    
+ Luego para confirmar Realiza una prueba de conexión a las maquinas, se crearon 2 maquinas en el puerto 2221 y 2222 :
+
+                ssh root@server01 -p 2221 -i ../key.private ssh root@server02 -p 2222 -i ../key.private    
  ## Luego de seguir todos los pasos
  Puedes salir de la carpeta Ansible000 
     
